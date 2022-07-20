@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Blog;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\BlogPost>
  */
-class UserFactory extends Factory
+class BlogPostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +17,21 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $title = fake()->sentence(rand(3, 8));
+        $txt = fake()->realText(rand(1000, 4000));
+        $isPublished = rand(1, 5) > 1;
         $createdAd = fake()->dateTimeBetween('-3 months', '-2 months');
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => bcrypt(fake()->password()),
-            'remember_token' => Str::random(10),
+            'category_id' => rand(1, 10),
+            'user_id' => rand(1, 5) === 5 ? 1 : 2,
+            'slug' => Str::slug($title),
+            'title' => $title,
+            'excerpt' => fake()->text(rand(40, 100)),
+            'content_raw' => $txt,
+            'content_html' => $txt,
+            'is_published' => $isPublished,
+            'published_at' => $isPublished ? fake()->dateTimeBetween('-2 months', '-1 days') : null,
             'created_at' => $createdAd,
             'updated_at' => $createdAd,
         ];
