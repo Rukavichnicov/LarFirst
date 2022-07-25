@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RestTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +16,16 @@ use App\Http\Controllers\RestTestController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
     Route::resource('posts', PostController::class)->names([
         'index' => 'blog.posts'
     ]);
 });
 Route::resource('rest', RestTestController::class)->names('restTest');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
