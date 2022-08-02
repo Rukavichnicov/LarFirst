@@ -61,6 +61,18 @@ class CategoryController extends BaseAdminController
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__, $request->all(), $id);
+        $item = BlogCategory::find($id);
+        if (empty($item)) {
+            return back()->withErrors(['msg' => "Запись с id=[{$id}] не найдена."])->withInput();
+        }
+
+        $data = $request->all();
+        $result = $item->fill($data)->save();
+
+        if ($result) {
+            return redirect()->route('blog.admin.categories.edit', $item->id)->with(['success' => 'Успешно сохранено']);
+        } else {
+            return back()->withErrors(['msg' => "Ошибка сохранения."])->withInput();
+        }
     }
 }
