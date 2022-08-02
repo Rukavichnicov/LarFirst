@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @php /** @var \App\Models\BlogCategory $item */  @endphp
+    @php /** @var \App\Models\Blog\BlogCategory $item */  @endphp
     <form method="POST" action="{{ route('blog.admin.categories.update', $item->id) }}">
         @method('PATCH')
         @csrf
