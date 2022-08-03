@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\Blog\BlogCategory;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CategoryController extends BaseAdminController
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(5);
+        $paginator = BlogCategory::paginate(15);
         return view('blog.admin.categories.index', compact('paginator'));
     }
 
@@ -55,11 +56,11 @@ class CategoryController extends BaseAdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BlogCategoryUpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogCategoryUpdateRequest $request, $id)
     {
         $item = BlogCategory::find($id);
         if (empty($item)) {
