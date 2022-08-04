@@ -27,7 +27,7 @@ class BlogCategoryUpdateRequest extends FormRequest
             'title' => 'required|max:200|min:5',
             'slug' => 'max:200',
             'parent_id' => 'required|integer|exists:blog_categories,id',
-            'description' => 'string|max:500|min:3',
+            'description' => 'nullable|string|max:500|min:3',
         ];
     }
 }
