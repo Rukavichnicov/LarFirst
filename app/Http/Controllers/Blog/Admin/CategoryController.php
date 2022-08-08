@@ -29,7 +29,6 @@ class CategoryController extends BaseAdminController
      */
     public function index()
     {
-        //$paginator = BlogCategory::paginate(15);
         $paginator = $this->blogCategoryRepository->getAllWithPaginate(15);
         return view('blog.admin.categories.index', compact('paginator'));
     }
@@ -74,7 +73,6 @@ class CategoryController extends BaseAdminController
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @param  BlogCategoryRepository  $categoryRepository
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
