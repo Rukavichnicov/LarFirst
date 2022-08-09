@@ -33,6 +33,7 @@ class BlogPostRepository extends CoreRepository
         $result = $this->startConditions()
                        ->select($columns)
                        ->orderBy('id', 'DESC')
+                       ->with(['category:id,title', 'user:id,name'])
                        ->paginate($countPage);
         return $result;
     }

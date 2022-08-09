@@ -9,7 +9,7 @@
                 </nav>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover small">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -24,8 +24,8 @@
                                 @php /** @var App\Models\Blog\BlogPost $item */ @endphp
                                 <tr @if(!$item->is_published) style="background-color: #EEE;" @endif>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user_id }}</td>
-                                    <td>{{ $item->category_id }}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->category->title }}</td>
                                     <td>
                                         <a href="{{ route('blog.admin.posts.edit', $item->id) }}">
                                             {{ $item->title }}
