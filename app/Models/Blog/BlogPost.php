@@ -18,8 +18,7 @@ class BlogPost extends Model
      */
     public function category()
     {
-        dd($this->belongsTo(BlogCategory::class, 'parent_id'));
-        return $this->belongsTo(BlogCategory::class, 'parent_id');
+        return $this->belongsTo(BlogCategory::class);
     }
 
     /**
