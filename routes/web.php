@@ -25,12 +25,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
-    Route::resource('posts', PostController::class)->names([
-        'index' => 'blog.posts'
-    ]);
-});
-
 $groupData = [
     'namespace' => 'App\Http\Controllers\Blog\Admin',
     'prefix' => 'admin/blog',
