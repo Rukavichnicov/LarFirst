@@ -37,4 +37,13 @@ class BlogPostRepository extends CoreRepository
                        ->paginate($countPage);
         return $result;
     }
+
+    /**
+     * @param int $id
+     * @return Model
+     */
+    public function getEdit(int $id)
+    {
+        return $this->startConditions()->find($id);
+    }
 }
