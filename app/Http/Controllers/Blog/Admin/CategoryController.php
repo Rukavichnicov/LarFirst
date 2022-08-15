@@ -58,8 +58,8 @@ class CategoryController extends BaseAdminController
             $data['slug'] = Str::slug($data['title']);
         }
 
-        $item = (new BlogCategory($data))->save();
-
+        $item = new BlogCategory($data);
+        $item->save();
         if ($item) {
             return redirect()->route('blog.admin.categories.edit', [$item->id])
                 ->with(['success' => 'Успешно сохранено']);
