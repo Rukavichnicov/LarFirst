@@ -10,8 +10,37 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BlogPost extends Model
 {
+    /**
+     * Class BlogPost
+     *
+     * @package App\Models\Blog
+     *
+     * @property BlogCategory $category
+     * @property User $user
+     * @property string $title
+     * @property string $slug
+     * @property string $content_html
+     * @property string $content_raw
+     * @property string $excerpt
+     * @property string $published_at
+     * @property boolean $is_published
+     *
+     *
+     */
+
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'category_id',
+        'excerpt',
+        'content_raw',
+        'is_published',
+        'published_at',
+        'user_id',
+    ];
 
     /**
      * @return BelongsTo
