@@ -8,26 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class BlogPost
+ *
+ * @package App\Models\Blog
+ *
+ * @property BlogCategory $category
+ * @property User $user
+ * @property string $title
+ * @property string $slug
+ * @property string $content_html
+ * @property string $content_raw
+ * @property string $excerpt
+ * @property string $published_at
+ * @property boolean $is_published
+ *
+ *
+ */
 class BlogPost extends Model
 {
-    /**
-     * Class BlogPost
-     *
-     * @package App\Models\Blog
-     *
-     * @property BlogCategory $category
-     * @property User $user
-     * @property string $title
-     * @property string $slug
-     * @property string $content_html
-     * @property string $content_raw
-     * @property string $excerpt
-     * @property string $published_at
-     * @property boolean $is_published
-     *
-     *
-     */
-
     use HasFactory;
     use SoftDeletes;
 
