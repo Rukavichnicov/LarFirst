@@ -2,11 +2,13 @@
 @if($errors->any())
     <div class="row justify-content-center mt-2">
         <div class="col-md-11">
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-                {{ $errors->first() }}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <ul>
+                    @foreach($errors->all() as $errorsTxt)
+                        <li>{{ $errorsTxt }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
@@ -14,10 +16,8 @@
 @if(session('success'))
     <div class="row justify-content-center mt-2">
         <div class="col-md-11">
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 {{ session()->get('success') }}
             </div>
         </div>
