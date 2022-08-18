@@ -9,6 +9,20 @@ use Illuminate\Support\Str;
 class BlogPostObserver
 {
     /**
+     * Обработка перед созданием записи
+     *
+     * @param  BlogPost  $blogPost
+     * @return void
+     */
+    public function creating(BlogPost $blogPost)
+    {
+        $this->setPublishedAt($blogPost);
+        $this->setSlug($blogPost);
+        $this->setHTML($blogPost);
+        $this->setUser($blogPost);
+    }
+
+    /**
      * Обработка перед обновлением записи
      *
      * @param BlogPost $blogPost
@@ -18,6 +32,26 @@ class BlogPostObserver
         $this->setPublishedAt($blogPost);
 
         $this->setSlug($blogPost);
+    }
+
+    /**
+     * Установка значения полю content_html относительно поля content_raw
+     * @param  BlogPost  $blogPost
+     */
+    protected function setHTML(BlogPost $blogPost)
+    {
+        if ($blogPost->isDirty('content_raw')) {
+            $blogPost->content_html = $blogPost->content_raw;
+        }
+    }
+
+    /**
+     * Установка id пользователя
+     * @param  BlogPost  $blogPost
+     */
+    protected function setUser(BlogPost $blogPost)
+    {
+        $blogPost->user_id = auth()->id();
     }
 
     /**

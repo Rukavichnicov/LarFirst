@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property BlogCategory $category
  * @property User $user
  * @property string $title
+ * @property string $category_id
+ * @property string $user_id
  * @property string $slug
  * @property string $content_html
  * @property string $content_raw
