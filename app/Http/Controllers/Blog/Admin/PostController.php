@@ -124,6 +124,19 @@ class PostController extends BaseAdminController
      */
     public function destroy($id)
     {
-        dd(__METHOD__, $id);
+        // Удаление с оставлением в БД, но присваиванием даты в deleted_at
+        $result = BlogPost::destroy($id);
+
+        // Полное удаление из БД
+        // $result = BlogPost::find($id)->forceDelete();
+
+        if ($result) {
+            return redirect()
+                ->route('blog.admin.posts.index')
+                ->with(['success' => "Запись с id $id удалена"]);
+        } else {
+            return back()
+                ->withErrors(['msg' => "Ошибка удаления"]);
+        }
     }
 }
