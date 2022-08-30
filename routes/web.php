@@ -29,6 +29,12 @@ $groupData = [
     'namespace' => 'App\Http\Controllers\Blog\Admin',
     'prefix' => 'admin/blog',
 ];
+
+Route::group(['prefix' => 'digging_deeper'], function () {
+    Route::get('collections', [\App\Http\Controllers\DiggingDeeperController::class, 'collections'])
+        ->name('digging_deeper.collections');
+});
+
 Route::group($groupData, function () {
     //BlogCategories
     $methods = ['index', 'edit', 'store', 'update', 'create'];
